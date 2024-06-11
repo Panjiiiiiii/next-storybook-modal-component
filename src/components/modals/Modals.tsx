@@ -3,12 +3,12 @@ import IconifyIcon from "../icon";
 
 //interface buat nampung props 
 export interface modalProps extends HTMLAttributes<HTMLDivElement> {
-  size: "small" | "medium" | "large"; 
-  title: string;
-  text: string;
-  modalButton: string;
-  primaryButton: string;
-  secondButton: string;
+  size: "small" | "medium" | "large"; //buat ngatur size
+  title: string; //buat value title di modals
+  text: string; //buat value text di modals
+  modalButton: string; //value buat tombol (text)
+  primaryButton: string; //value buat tombol (text)
+  secondButton: string; //value buat tombol (text)
 }
 //1. Props ini banyak variannya bisa (enum, string, boolean) tinggal eksplor di documentasinya.
 //2. Props ini buat custom element di storybook
@@ -17,14 +17,13 @@ export interface modalProps extends HTMLAttributes<HTMLDivElement> {
 //init component 
 export const Modals: React.FC<modalProps> = ({ 
   //parameter buat nampung propsnya 
-  size,
+  size, 
   modalButton,
   title,
   text,
-  children,
+  children, //children nanti diisi element html yang lain (text, header, inputan, dll)
   primaryButton,
   secondButton,
-  ...rest
 }) => {
   //args buat ganti size modalsnya (contoh penggunaan args)
   const sizeStyles = {
