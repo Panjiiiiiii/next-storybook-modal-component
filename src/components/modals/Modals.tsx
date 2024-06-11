@@ -1,16 +1,22 @@
 import React, { FC, HTMLAttributes, useState } from "react";
 import IconifyIcon from "../icon";
 
+//interface buat nampung props 
 export interface modalProps extends HTMLAttributes<HTMLDivElement> {
-  size: "small" | "medium" | "large";
+  size: "small" | "medium" | "large"; 
   title: string;
   text: string;
   modalButton: string;
   primaryButton: string;
   secondButton: string;
 }
+//1. Props ini banyak variannya bisa (enum, string, boolean) tinggal eksplor di documentasinya.
+//2. Props ini buat custom element di storybook
+//3. Props bakal dimasukkin di params elemnt buat pasing argumen ke dalam element
 
-export const Modals: React.FC<modalProps> = ({
+//init component 
+export const Modals: React.FC<modalProps> = ({ 
+  //parameter buat nampung propsnya 
   size,
   modalButton,
   title,
@@ -20,6 +26,7 @@ export const Modals: React.FC<modalProps> = ({
   secondButton,
   ...rest
 }) => {
+  //args buat ganti size modalsnya (contoh penggunaan args)
   const sizeStyles = {
     small: "max-w-[360px] max-h-[200px]",
     medium: "max-w-[580px] max-h-[180px]",
@@ -27,6 +34,7 @@ export const Modals: React.FC<modalProps> = ({
   };
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  //function buat open modal pakai button 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
@@ -42,6 +50,7 @@ export const Modals: React.FC<modalProps> = ({
       {isOpen && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-75">
           <div
+          //args yang di storybook dipassing ke dalam style/value di tag html
             className={`relative flex flex-col justify-between shadow-md rounded- p-4 bg-white rounded-md ${size === "small" ? sizeStyles.small : size === "medium" ? sizeStyles.medium : size === "large" ? sizeStyles.large : ""}`}
           >
             <div>
